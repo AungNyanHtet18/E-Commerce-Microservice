@@ -1,0 +1,4 @@
+services:
+  postgres:
+    container_name: ms_pg-sql
+    impage: postgres:16
