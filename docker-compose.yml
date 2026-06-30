@@ -9,7 +9,7 @@ services:
     volumes:
       - postgres:/var/lib/postgresql/data
     ports:
-      - 5432:5432
+      - 5433:5432
     networks:
       - microservices-net
     restart: unless-stopped
@@ -18,9 +18,9 @@ services:
      container_name: ms_pgadmin
      image: dpage/pgadmin4
      environment: 
-        PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin@pgadmin.org}
+        PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin@pgadmin.org}   #if env file does not exist username = pgadmin@pgadmin.org || password = admin
         PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
-        PGADMIN_CONFIG_SEVER_MODE: 'False'
+        PGADMIN_CONFIG_SERVER_MODE: 'False'
      volumes:
         - pgadmin:/var/lib/pgadmin
      ports: 
@@ -49,7 +49,7 @@ services:
       - 8081:8081
     depends_on:
       - mongodb
-    restart: always
+    restart: unless-stopped
 
   mail-dev: 
       container_name: ms_mail_dev
