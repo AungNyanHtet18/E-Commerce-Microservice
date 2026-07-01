@@ -21,4 +21,12 @@ public class CustomerMapper {
 		return customer;
 	}
 
+	public static CustomerResponse mapToCustomerResponse(Customer customer) {
+		return new CustomerResponse(
+				     customer.getId(), 
+				     customer.getFirstName(),
+				     customer.getLastName(),
+				     customer.getEmail(),
+				     customer.getAddress());
+	}
 }
