@@ -25,12 +25,12 @@ public class CustomerController {
 		 return ResponseEntity.ok(customerService.findAll());
 	}
 	
-	@GetMapping("/exist/{customerId}")
+	@GetMapping("exist/{customerId}")
 	ResponseEntity<Boolean> existById(@PathVariable String customerId) {
 		 return ResponseEntity.ok(customerService.existsById(customerId));
 	}
 	
-	@GetMapping("/{customerId}")
+	@GetMapping("{customerId}")
 	ResponseEntity<CustomerResponse> findById(@PathVariable String customerId) {
 		 return ResponseEntity.ok(customerService.findById(customerId));
 	}
@@ -54,5 +54,4 @@ public class CustomerController {
 		 customerService.deleteCustomerById(customerId);
 	    return ResponseEntity.accepted().build();
 	}
-	
 }

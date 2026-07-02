@@ -11,14 +11,13 @@ public class CustomerMapper {
 			 return null;
 		}
 		
-		var customer =  Customer.builder()
+		return Customer.builder()
 			           .id(request.id())
 			           .firstName(request.firstName())
 			           .lastName(request.lastName())
 			           .email(request.email())
 			           .address(request.address())
 			           .build();
-		return customer;
 	}
 
 	public static CustomerResponse mapToCustomerResponse(Customer customer) {
