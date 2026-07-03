@@ -1,4 +1,4 @@
-package com.dev.anh.customer.customer.handler;
+package com.dev.anh.product.product.exception.handler;
 
 import java.util.HashMap;
 
@@ -8,13 +8,13 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import com.dev.anh.customer.customer.exception.CustomerNotFoundException;
+import com.dev.anh.product.product.exception.ProductPurchaseException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-	@ExceptionHandler(CustomerNotFoundException.class)
-	ResponseEntity<String> handle(CustomerNotFoundException exception) {
+	@ExceptionHandler(ProductPurchaseException.class)
+	ResponseEntity<String> handle(ProductPurchaseException exception) {
 		 return ResponseEntity
 			   .status(HttpStatus.NOT_FOUND)
 			   .body(exception.getMessage());

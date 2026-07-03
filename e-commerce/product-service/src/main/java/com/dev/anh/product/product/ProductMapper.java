@@ -37,4 +37,22 @@ public class ProductMapper {
 				product.getCategory().getName(), 
 				product.getCategory().getDescription());
 	}
-}
+	
+	
+	public static ProductPurchaseResponse mapToProductPurchase(Product product) {
+		return new ProductPurchaseResponse(
+                product.getId(),
+				product.getName(), 
+				product.getDescription(), 
+				product.getAvailableQuantity(), 
+				product.getPrice());
+	}
+	
+	public static ProductPurchaseResponse mapToProductPurchaseResponse(Product product, double newAvailableQuantity) {
+		return new ProductPurchaseResponse(
+				product.getId(), 
+				product.getName(), 
+				product.getDescription(), 
+				newAvailableQuantity, 
+				product.getPrice());
+	}}
