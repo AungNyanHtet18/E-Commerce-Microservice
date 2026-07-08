@@ -23,6 +23,8 @@
 		<module>discovery-server</module>
 		<module>customer-service</module>
 		<module>product-service</module>
+		
+		<module>order-service</module>
 	</modules>
 
 	<dependencies>

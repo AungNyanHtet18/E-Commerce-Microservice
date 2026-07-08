@@ -30,8 +30,4 @@ public class Category {
 	
 	@OneToMany(mappedBy = "category", cascade = CascadeType.REMOVE)
 	private List<Product> products;
-	
-	
-	
-	
 }
