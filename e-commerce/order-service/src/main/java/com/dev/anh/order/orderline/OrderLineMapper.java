@@ -1,9 +1,7 @@
 package com.dev.anh.order.orderline;
 
 import org.springframework.stereotype.Service;
-
 import com.dev.anh.order.order.Order;
-
 
 @Service
 public class OrderLineMapper {
@@ -24,6 +22,10 @@ public class OrderLineMapper {
 				     .productId(request.productId())
 				     .quantity(request.quantity())
 				     .build();
+	}
+	
+	public static OrderLineResponse mapToOrderLine(OrderLine orderLine) {
+		 return new OrderLineResponse(orderLine.getId(), orderLine.getProductId(), orderLine.getQuantity());
 	}
 
 }

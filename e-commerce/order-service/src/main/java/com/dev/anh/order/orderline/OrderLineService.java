@@ -15,7 +15,4 @@ public class OrderLineService {
 		var orderLine = orderLineMapper.mapToOrderLine(orderlineRequest);
 		return orderLineRepository.save(orderLine).getId();
 	}
-	
-	
-	
 }
