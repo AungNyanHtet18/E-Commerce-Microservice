@@ -1,6 +1,5 @@
 package com.dev.anh.order.orderline;
 
-
 import com.dev.anh.order.order.Order;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

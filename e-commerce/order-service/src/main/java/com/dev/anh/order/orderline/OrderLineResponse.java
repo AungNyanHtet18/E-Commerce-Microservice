@@ -5,5 +5,4 @@ public record OrderLineResponse(
 	Integer productId,
 	double quantity) {
 
-	
 }

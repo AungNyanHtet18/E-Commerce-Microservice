@@ -2,7 +2,6 @@ package com.dev.anh.order.order;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.springframework.stereotype.Service;
 import com.dev.anh.order.customer.CustomerClient;
 import com.dev.anh.order.exception.BusinessException;
@@ -11,6 +10,8 @@ import com.dev.anh.order.kafka.OrderProducer;
 import com.dev.anh.order.orderline.OrderLineRequest;
 import com.dev.anh.order.orderline.OrderLineService;
 import com.dev.anh.order.product.ProductClient;
+
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -56,8 +57,10 @@ public class OrderService {
 	public List<OrderResponse> findAll() {
 		return orderRepository.findAll()
 				 .stream().map(OrderMapper::mapToOrderResponse).collect(Collectors.toList());
-				        
 	}
 
-	
+	public OrderResponse findById(Integer orderId) {
+		return orderRepository.findById(orderId).map(OrderMapper::mapToOrderResponse)
+				  .orElseThrow(() -> new EntityNotFoundException("Cannot find order with the provided ID %d".formatted(orderId)));
+	}
 }
