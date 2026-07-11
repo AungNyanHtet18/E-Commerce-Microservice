@@ -15,6 +15,7 @@ spring:
        database-platform: org.hibernate.dialect.PostgreSQLDialect
 
   kafka:
+     bootstrap-servers: localhost:9094
      producer:
         bootstrap-servers: localhost:9094
         key-serializer: org.apache.kafka.common.serialization.StringSerializer

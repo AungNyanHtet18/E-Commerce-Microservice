@@ -5,9 +5,9 @@
     <artifactId>e-commerce</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>order-service</artifactId>
   
-   <description>Order Service</description>
+  <artifactId>order-service</artifactId>
+  <description>Order Service</description>
 
 	<properties>
 		<java.version>21</java.version>
