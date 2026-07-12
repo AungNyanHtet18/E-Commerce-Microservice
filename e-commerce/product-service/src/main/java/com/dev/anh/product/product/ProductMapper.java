@@ -7,12 +7,7 @@ import com.dev.anh.product.category.Category;
 @Service
 public class ProductMapper {
 
-	public Product mapToProduct(ProductRequest request) {
-		
-		if(request == null) {
-			 return null;
-		}
-		
+	public Product mapToProduct(ProductRequest request) {		
 		return Product.builder()
 				     .id(request.id())
 				     .name(request.name())

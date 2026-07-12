@@ -8,10 +8,6 @@ import lombok.RequiredArgsConstructor;
 public class OrderMapper {
 	
 	public Order mapToOrder(OrderRequest request) {
-
-		if(request == null) {
-			return null;
-		}
 		
 		return Order.builder()
 				    .id(request.id())
@@ -29,6 +25,6 @@ public class OrderMapper {
 				 order.getTotalAmount(), 
 				 order.getPaymentMethod(),
 				 order.getCustomerId(), 
-				 order.getCreatedAt());
+				 order.getCreatedDate());
 	}
 }

@@ -1,12 +1,11 @@
-package com.dev.anh.order.order;
+package com.dev.anh.payment.payment;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
+
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import com.dev.anh.order.orderline.OrderLine;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
@@ -14,42 +13,38 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 @Builder
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-@Table(name= "customer_order")
-public class Order {
+@Table(name = "payment")
+public class Payment {
 
 	@Id
 	@GeneratedValue
 	private Integer id;
 	
-	private String customerId;
+	private String orderId;
 	
-	@OneToMany(mappedBy = "order")
-	private List<OrderLine> orderLines;
-	
-	private String reference;
-	private BigDecimal totalAmount;
-	
+	private BigDecimal amount;
+
 	@Enumerated(EnumType.STRING)
 	private PaymentMethod paymentMethod;
 	
 	@CreatedDate
 	@Column(updatable = false, nullable = false)
-	private LocalDateTime createdDate;
+	private LocalDateTime createDate;
 	
 	@LastModifiedDate
 	@Column(insertable = false)
-	private LocalDateTime lastModifiedDate;
+	private LocalDateTime lastModifiedDate;	
+
 }
