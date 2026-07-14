@@ -8,14 +8,21 @@ spring:
      password: admin
      driver-class-name: org.postgresql.Driver
 
-     jpa: 
-       hibernate:
-          ddl-auto: create
-       database: postgresql
-       database-platform: org.hibernate.dialect.PostgreSQLDialect
+  jpa: 
+     hibernate:
+       ddl-auto: create
+     database: postgresql
+     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
   kafka: 
      bootstrap-servers: localhost:9094
+     producer:
+       bootstrap-server: localhost:9094
+       key-serializer: org.apache.kafka.common.serialization.StringSerializer
+       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+       properties:
+         spring.json.type.mapping: notificationRequest:com.dev.anh.payment.kafka.NotificationRequest
+
      consumer:
         bootstrap-servers: localhost:9094
         group-id: myGroup
@@ -24,3 +31,5 @@ spring:
         value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
         properties:
            spring.json.trusted.packages:  '*'
+
+  

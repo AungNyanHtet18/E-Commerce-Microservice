@@ -32,7 +32,7 @@ public class Payment {
 	@GeneratedValue
 	private Integer id;
 	
-	private String orderId;
+	private Integer orderId;
 	
 	private BigDecimal amount;
 

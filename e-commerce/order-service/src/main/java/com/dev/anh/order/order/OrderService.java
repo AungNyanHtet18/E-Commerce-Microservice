@@ -9,8 +9,9 @@ import com.dev.anh.order.kafka.OrderComfirmation;
 import com.dev.anh.order.kafka.OrderProducer;
 import com.dev.anh.order.orderline.OrderLineRequest;
 import com.dev.anh.order.orderline.OrderLineService;
+import com.dev.anh.order.payment.PaymentClient;
+import com.dev.anh.order.payment.PaymentRequest;
 import com.dev.anh.order.product.ProductClient;
-
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
@@ -24,6 +25,7 @@ public class OrderService {
 	private final CustomerClient customerClient;
 	private final ProductClient productClient;
 	private final OrderProducer orderProducer;
+	private final PaymentClient paymentClient;
 	
 	public Integer createOrder(OrderRequest request) {
 		var customer = customerClient.findCustomerById(request.customerId())
@@ -40,6 +42,14 @@ public class OrderService {
 		    		 orderline.productId(),
 		    		 orderline.quantity()));
 		});
+
+		paymentClient.requestOrderPayment(
+				new PaymentRequest(
+					order.getId(), 
+				    order.getTotalAmount(), 
+				    order.getPaymentMethod(), 
+				    order.getReference(), 
+				    customer));
 		
 		//todo start the payment process
 		//send the order confirmation( notification-ms ) 
@@ -50,7 +60,7 @@ public class OrderService {
 					request.paymentMethod(), 
 					customer, 
 					purchaseProduct));
-					
+				
 		return order.getId();
 	}
 
